@@ -1,0 +1,25 @@
+language: bash
+
+notifications:
+  email:
+    recipients:
+      - rnbhadeshiya@gmail.com
+    on_failure: always
+    only: master
+
+matrix:
+  include:
+    - os: linux
+      dist: bionic
+      services:
+        - docker
+      sudo:
+        - required
+
+before_script:
+  - cd docker/
+
+script:
+  - ./build.sh
+  - source option.sh
+  - docker run $CONTAINER_NAME bash

@@ -1,5 +1,8 @@
 #!/bin/bash 
 source option.sh
+if [[ -n "$1" ]]; then 
+	RUNTIME_CONTAINER=$1
+fi
 echo "Stopping $CONTAINER_NAME ..."
 docker stop $CONTAINER_NAME &> /dev/null
 sleep 1
@@ -23,5 +26,5 @@ docker run -itd \
 	-v $HOME/.Xauthority:/root/.Xauthority:rw \
 	--volume=/home/$USER:/home/$docker_user:rw \
 	--name $CONTAINER_NAME \
-	$CONTAINER_NAME \
+	$RUNTIME_CONTAINER \
 	bash

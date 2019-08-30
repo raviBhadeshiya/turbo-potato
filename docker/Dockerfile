@@ -53,14 +53,18 @@ EXPOSE 8888
 EXPOSE 6006
 
 # Add new sudo user
-ARG docker_user=user
-ARG docker_passwd=user
+ARG DOCKER_USER=user
+ENV USER=$DOCKER_USER
+
+ARG DOCKER_PASSWD=user
+ENV PASSWD=$DOCKER_PASSWD
+
 ARG uid=1000
-ARG gid=1000
-ENV USER=$docker_user
-ENV PASSWD=$docker_passwd
 ENV UID=$uid
+
+ARG gid=1000
 ENV GID=$gid
+
 RUN useradd --create-home -m $USER && \
         echo "$USER:$PASSWD" | chpasswd && \
         usermod --shell /bin/bash $USER && \

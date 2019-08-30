@@ -37,6 +37,18 @@ RUN echo "Setting Enviroment variables" && \
         curl -sSL http://get.gazebosim.org | sh \
         && rm -rf /var/lib/apt/lists/*
 
+# Install ros extra 
+RUN sudo apt update && sudo apt install -y \
+        ros-$ROS2_DISTRO-behaviortree-cpp \
+        ros-$ROS2_DISTRO-rttest \
+        ros-$ROS2_DISTRO-rclcpp-action \
+        ros-$ROS2_DISTRO-gazebo-dev \
+        ros-$ROS2_DISTRO-gazebo-msgs \
+        ros-$ROS2_DISTRO-gazebo-plugins \
+        ros-$ROS2_DISTRO-gazebo-ros \
+        ros-$ROS2_DISTRO-gazebo-ros-pkgs \
+        && rm -rf /var/lib/apt/lists/*
+
 ARG BUILD_AI
 RUN if [ "$BUILD_AI" = "true" ] ; \
         then apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/7fa2af80.pub &&\

@@ -24,7 +24,7 @@ docker run -itd \
 	-v /dev:/dev:rw \
 	-v /tmp:/tmp:rw \
 	-v $HOME/.Xauthority:/root/.Xauthority:rw \
-	--volume=/home/$USER:/home/$docker_user:rw \
+	--volume=/home/$USER:/home/$DOCKER_USER:rw \
 	--name $CONTAINER_NAME \
 	$RUNTIME_CONTAINER \
 	bash

@@ -1,6 +1,6 @@
 #!/bin/bash
 CONTAINER_NAME=dashing
-RUNTIME_CONTAINER=CONTAINER_NAME
+RUNTIME_CONTAINER=$CONTAINER_NAME
 BASE_IMAGE=nvidia/cudagl:10.0-runtime-ubuntu18.04
 ROS2_DISTRO=dashing
 TZ=America/New_York

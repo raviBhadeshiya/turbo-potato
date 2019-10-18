@@ -1,9 +1,9 @@
 #!/bin/bash
 CONTAINER_NAME=dashing
 RUNTIME_CONTAINER=$CONTAINER_NAME
-BASE_IMAGE=nvidia/cudagl:10.0-runtime-ubuntu18.04
+BASE_IMAGE=nvidia/cuda:10.1-cudnn7-runtime-ubuntu18.04
 ROS2_DISTRO=dashing
 TZ=America/New_York
-DOCKER_USER=user
-DOCKER_PASSWD=user
-BUILD_AI=true
+DOCKER_USER=turbo
+DOCKER_PASSWD=turbo
+BUILD_AI_PACKAGE=true

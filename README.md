@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/raviBhadeshiya/turbo-potato.svg?branch=master)](https://travis-ci.org/raviBhadeshiya/turbo-potato)
 # turbo-potato
 
 ## Dependency:

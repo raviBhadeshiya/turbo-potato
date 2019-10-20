@@ -21,4 +21,5 @@ before_script:
 
 script:
   - ./build.sh
-  - ./start.sh
+  - source option.sh
+  - docker run $CONTAINER_NAME bash

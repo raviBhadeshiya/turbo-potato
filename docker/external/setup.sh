@@ -1,8 +1,8 @@
 #!/bin/bash
 echo "Setting up the enviroment ---------------------------"
 sleep 1
-echo -e "alias rosStart='cd ~/turbo-potato/docker/ && ./start.sh'
-alias rosStop='cd ~/turbo-potato/docker/ && ./stop.sh'
+echo -e "alias rosStart='cd ~/turbo-potato/docker/ && ./start.sh && cd ~/'
+alias rosStop='cd ~/turbo-potato/docker/ && ./stop.sh && cd ~/'
 alias rosBash='cd ~/turbo-potato/docker/ && ./bash.sh'" >> ~/.bash_aliases
 bash
 

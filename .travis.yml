@@ -20,6 +20,6 @@ before_script:
   - cd docker/
 
 script:
-  - ./build.sh
+  - ./build.sh --no-cache
   - source option.sh
   - docker run $CONTAINER_NAME bash

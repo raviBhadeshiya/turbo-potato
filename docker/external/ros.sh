@@ -5,12 +5,22 @@ curl -sSL 'http://keyserver.ubuntu.com/pks/lookup?op=get&search=0xC1CF6E31E6BADE
 
 apt-get update && \
     apt-get install -y \
+        python-rosdep \
+        python-catkin-tools \
+        python3-pip \
+        python-rosdep \
+        python3-vcstool \
         ros-$ROS1_DISTRO-desktop \
-        ros-$ROS2_DISTRO-ros1-bridge \
         ros-$ROS1_DISTRO-joint-state-publisher-gui \
         ros-$ROS1_DISTRO-industrial-* \
         ros-$ROS1_DISTRO-moveit-* \
         ros-$ROS1_DISTRO-octomap-ros \
         ros-$ROS1_DISTRO-perception-pcl \
-        python-catkin-tools
+        ros-$ROS1_DISTRO-gazebo-*
+
+if [ ! -z "${ROS2_DISTRO}" ];
+then
+apt-get install -y ros-$ROS2_DISTRO-ros1-bridge 
+fi
+
 rm -rf /var/lib/apt/lists/*

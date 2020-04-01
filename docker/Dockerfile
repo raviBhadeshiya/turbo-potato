@@ -29,11 +29,15 @@ ENV ROS1_DISTRO ${ROS1_DISTRO}
 
 # install ROS 2
 COPY external/ros2.sh /
-RUN chmod +x /ros2.sh && ./ros2.sh
+RUN if [ ! -z "${ROS2_DISTRO}" ]; then chmod +x /ros2.sh && ./ros2.sh ;fi
 
 # install ROS 1 and bridge
 COPY external/ros.sh /
 RUN if [ ! -z "${ROS1_DISTRO}" ]; then chmod +x /ros.sh && ./ros.sh ;fi
+
+# install extra's
+COPY external/extra.sh /
+RUN chmod +x /extra.sh && ./extra.sh
 
 # Add new sudo user
 ARG DOCKER_USER=user

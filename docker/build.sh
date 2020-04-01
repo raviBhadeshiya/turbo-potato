@@ -1,7 +1,7 @@
 #!/bin/bash
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 source $DIR/option.sh
-./stop.sh
+$DIR/stop.sh
 echo "ros $ROS2_DISTRO will be installed in container $CONTAINER_NAME:latest"
 if [ ! -z "${ROS1_DISTRO}" ]; then echo "Install of ros $ROS1_DISTRO enabled !!"; fi
 echo "Building a docker images ---------------------------"

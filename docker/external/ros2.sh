@@ -19,11 +19,6 @@ apt-get update && apt-get install -y \
     ros-$ROS2_DISTRO-rttest \
     ros-$ROS2_DISTRO-launch-testing-ament-cmake \
     ros-$ROS2_DISTRO-ros-testing \
-    ros-$ROS2_DISTRO-rclcpp-action \
-    ros-$ROS2_DISTRO-gazebo-dev \
-    ros-$ROS2_DISTRO-gazebo-msgs \
-    ros-$ROS2_DISTRO-gazebo-plugins \
-    ros-$ROS2_DISTRO-gazebo-ros \
-    ros-$ROS2_DISTRO-gazebo-ros-pkgs \
+    ros-$ROS2_DISTRO-rclcpp-action 
 
 rm -rf /var/lib/apt/lists/*

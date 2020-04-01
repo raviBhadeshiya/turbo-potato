@@ -3,6 +3,16 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 source $DIR/option.sh
 $DIR/stop.sh
 
+while getopts "t:" opt; do
+  case $opt in
+    t) CONTAINER_TAG=$OPTARG ;;
+    *) echo 'args not supported' >&2
+       exit 1
+  esac
+done
+
+RUNTIME_CONTAINER=$CONTAINER_NAME:$CONTAINER_TAG
+
 # If NVIDIA is present, enable use of gpu
 if test -c /dev/nvidia0;
 then
@@ -14,7 +24,7 @@ fi
 XSOCK=/tmp/.X11-unix
 xhost +local: &> /dev/null
 
-echo "Starting $CONTAINER_NAME ..."
+echo "Starting $RUNTIME_CONTAINER ..."
 docker run -itd \
 	--net=host \
 	--privileged \

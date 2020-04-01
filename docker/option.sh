@@ -6,7 +6,7 @@ DOCKER_USER=anton # docker user name
 DOCKER_PASSWD=$(echo $DOCKER_USER | rev)
 
 CONTAINER_NAME=ros2  # set this to change container name
-RUNTIME_CONTAINER=$CONTAINER_NAME # if you want to run custom container
+CONTAINER_TAG=latest
 
 ROS2_DISTRO=eloquent # ros distro installation
 ROS1_DISTRO=melodic # if you want to install ros1, specify distro otherwise leave blank

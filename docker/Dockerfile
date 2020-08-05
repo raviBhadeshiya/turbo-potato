@@ -1,14 +1,9 @@
-ARG BASE_IMAGE=nvidia/cuda:10.1-cudnn7-runtime-ubuntu18.04
-# cudnn base image for future ml
-
-FROM ${BASE_IMAGE}
+FROM nvidia/cuda:10.2-cudnn8-runtime-ubuntu18.04
 
 LABEL maintainer="Ravi Bhadeshiya"
 
 ENV NVIDIA_VISIBLE_DEVICES ${NVIDIA_VISIBLE_DEVICES:-all}
-
 ENV NVIDIA_DRIVER_CAPABILITIES ${NVIDIA_DRIVER_CAPABILITIES:+$NVIDIA_DRIVER_CAPABILITIES,}graphics
-
 ENV DEBIAN_FRONTEND noninteractive
 
 ARG TZ=America/New_York

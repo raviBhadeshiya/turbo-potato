@@ -1,8 +1,8 @@
 #!/bin/bash
 
-apt-get update && apt-get upgrade -y
+apt update && apt upgrade -y
 
-apt-get install -y --fix-missing \
+apt install -y --fix-missing \
     sudo \
     apt-utils \
     git \
@@ -30,7 +30,6 @@ apt-get install -y --fix-missing \
     liblapack-dev \
     libhdf5-dev \
     libasio-dev \
-    libtinyxml2-dev \
-    python3-sip-dev \
+    libtinyxml2-dev
 
 rm -rf /var/lib/apt/lists/*

@@ -11,6 +11,8 @@ docker build --build-arg BASE_IMAGE=$BASE_IMAGE \
     --build-arg ROS1_DISTRO=$ROS1_DISTRO \
     --build-arg DOCKER_USER=$DOCKER_USER \
     --build-arg DOCKER_PASSWD=$DOCKER_PASSWD \
+    --build-arg uid=$(id -u) \
+    --build-arg gid=$(id -g) \
     --build-arg TZ=$TZ \
     -t $CONTAINER_NAME \
     ${@:1:99} . \

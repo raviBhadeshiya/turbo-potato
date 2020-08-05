@@ -3,8 +3,8 @@
 sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list' &> /dev/null
 curl -sSL 'http://keyserver.ubuntu.com/pks/lookup?op=get&search=0xC1CF6E31E6BADE8868B172B4F42ED6FBAB17C654' | sudo apt-key add - &> /dev/null
 
-apt-get update && \
-    apt-get install -y \
+apt update && \
+    apt install -y \
         python-rosdep \
         python-catkin-tools \
         python3-pip \
@@ -20,7 +20,7 @@ apt-get update && \
 
 if [ ! -z "${ROS2_DISTRO}" ];
 then
-apt-get install -y ros-$ROS2_DISTRO-ros1-bridge 
+apt install -y ros-$ROS2_DISTRO-ros1-bridge 
 fi
 
 rm -rf /var/lib/apt/lists/*

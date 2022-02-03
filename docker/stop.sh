@@ -1,9 +1,21 @@
 #!/bin/bash
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-source $DIR/option.sh
-RUNTIME_CONTAINER=$CONTAINER_NAME # if you want to run custom container
 
-echo "Stopping $RUNTIME_CONTAINER ..."
-docker stop $RUNTIME_CONTAINER &> /dev/null
-echo "Removing $RUNTIME_CONTAINER ..."
-docker rm $RUNTIME_CONTAINER &> /dev/null
+# read default config
+source $DIR/config
+
+while getopts "t:" opt; do
+  case $opt in
+    t) CONTAINER_TAG=$OPTARG ;;
+    *) echo -e "${RED}Args not supported${NC}" >&2
+       exit 1
+  esac
+done
+
+RUNTIME_CONTAINER_NAME=$CONTAINER_NAME
+
+# stop exisiting docker
+echo -e "${YELLOW}Stopping $RUNTIME_CONTAINER_NAME ...${NC}"
+docker stop $RUNTIME_CONTAINER_NAME &> /dev/null
+echo -e "${YELLOW}Removing $RUNTIME_CONTAINER_NAME ...${NC}"
+docker rm $RUNTIME_CONTAINER_NAME &> /dev/null

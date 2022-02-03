@@ -1,20 +1,21 @@
 #!/bin/bash
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-source $DIR/option.sh
+source $DIR/config
 
-CMD_ARGS=
-if [ $# -ge 1 ] ; then
-    CMD_ARGS="&& ${@:1:99}"
-fi
+while getopts "t:e:" opt; do
+  case $opt in
+    t) CONTAINER_TAG=$OPTARG ;;
+    e) EXTRA_CMD="&& $OPTARG" ;;
+    *) echo -e "${RED}Args not supported${NC}" >&2
+       exit 1
+  esac
+done
 
-PRIORITY_DISTRO=""
-if [ ! -z "${ROS2_DISTRO}" ];
-then
-PRIORITY_DISTRO=$ROS2_DISTRO
-else
-PRIORITY_DISTRO=$ROS1_DISTRO
-fi
+RUNTIME_CONTAINER_NAME=$CONTAINER_NAME
+EXEC_CMD='$EXTRA_CMD && /bin/bash'
 
-EXEC_CMD="source "/opt/ros/$PRIORITY_DISTRO/setup.bash" $CMD_ARGS && /bin/bash"
+xhost +local:root &> /dev/null
 
-docker exec -i -t $CONTAINER_NAME /bin/bash -c "$EXEC_CMD"
+docker exec -it --privileged $RUNTIME_CONTAINER_NAME /bin/bash -c "$EXEC_CMD"
+
+xhost -local:root &> /dev/null

@@ -1,4 +1,4 @@
-FROM nvidia/cuda:10.2-cudnn8-runtime-ubuntu18.04
+FROM nvidia/cuda:11.5.1-cudnn8-runtime-ubuntu20.04
 
 LABEL maintainer="Ravi Bhadeshiya"
 
@@ -14,21 +14,6 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 # # install dependecies
 COPY external/dependecies.sh /
 RUN chmod +x /dependecies.sh && ./dependecies.sh
-
-# set ROS
-ARG ROS2_DISTRO=eloquent
-ENV ROS2_DISTRO ${ROS2_DISTRO}
-
-ARG ROS1_DISTRO
-ENV ROS1_DISTRO ${ROS1_DISTRO}
-
-# install ROS 2
-COPY external/ros2.sh /
-RUN if [ ! -z "${ROS2_DISTRO}" ]; then chmod +x /ros2.sh && ./ros2.sh ;fi
-
-# install ROS 1 and bridge
-COPY external/ros.sh /
-RUN if [ ! -z "${ROS1_DISTRO}" ]; then chmod +x /ros.sh && ./ros.sh ;fi
 
 # install extra's
 COPY external/extra.sh /
@@ -62,13 +47,10 @@ USER $USER
 ENV HOME /home/$USER
 WORKDIR ${HOME}
 
-# init the rosdep
-RUN sudo rosdep init && rosdep update
-
 # setup entrypoint for sourcing
-COPY external/ros_entrypoint.sh /
-RUN sudo chmod +x /ros_entrypoint.sh
+COPY external/entrypoint.sh /
+RUN sudo chmod +x /entrypoint.sh
 
-ENTRYPOINT ["/ros_entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
 
 CMD ["bash"]
